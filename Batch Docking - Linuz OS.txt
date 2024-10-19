@@ -1,0 +1,20 @@
+#Install Openbabel: 
+sudo apt install openbabel
+
+#Install AutoDock Vina: 
+sudo apt install autodock-vina
+
+#Split Plant Secondary Compounds sdf: 
+obabel -isdf name_of_the_file.sdf -osdf -O *.sdf –split
+
+#Energy minimization of the molecules splited: 
+obminimize -ff MMFF94 -n 1000 *.sdf
+
+#Convert the SDF to PDBQT (Autodock file for docking): 
+obabel -isdf *.sdf -opdbqt -O *.pdbqt
+
+#Preparation of the ligand File: 
+ls >ligand.txt
+
+#Batch Docking Command Line using perl: 
+perl vina_linux.pl
